@@ -10,6 +10,7 @@ public class SMS
     private double absender;
     private String inhalt;
     private double empfaenger;
+    private int i;
     /**
      * Constructor for objects of class SMS
      */
