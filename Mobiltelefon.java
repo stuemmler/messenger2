@@ -15,19 +15,18 @@ public class Mobiltelefon
     /**
      * Constructor for objects of class Mobiltelefon
      */
-    public Mobiltelefon(double pTelefonnummer, String pModellnummer, int pPin, Provider pProvider)
+    public Mobiltelefon(double pTelefonnummer, String pModellnummer, int pPin)
     {
         this.telefonnummer = pTelefonnummer;
         this.modellnummer = pModellnummer;
         this.pin = pPin;
-        this.provider = pProvider;
     }
 
     /**
      * Ist die übergebene PIN mit der PIN des Mobiltelefons identisch, wird das Mobiltelefon beim Provider angemeldet und die
      * @param  pPin die beim Einschalten eingegebene PIN 
      */
-    public void einschalten(int pPin)
+    public void einschalten(int pPin, Provider pProvider)
     {
         if(an)
         {
@@ -37,6 +36,7 @@ public class Mobiltelefon
         
         if (pPin == this.pin)
         {
+            this.setProvider(pProvider);
             provider.mtAnmelden(this);
             an = true;
         }
@@ -75,7 +75,7 @@ public class Mobiltelefon
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public void empfangeSMS(SMS pSms)
+    protected void empfangeSMS(SMS pSms)
     {
         System.out.println("Neue SMS von: " + pSms.getAbsender());
         System.out.println(pSms.getInhalt());
